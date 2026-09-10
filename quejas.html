@@ -3,14 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quejas - Tiesa Solution</title>
+    <title>Tiesa Solution - Quejas</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <style>
-        body { margin: 0; font-family: Arial, sans-serif; background: #f4f4f4; }
-        header { background: #222; color: white; padding: 20px; text-align: center; }
-        nav { background: #333; padding: 10px; text-align: center; }
-        nav a { color: #fff; margin: 0 15px; text-decoration: none; font-size: 18px; font-weight: bold; }
-        .contenedor { width: 90%; max-width: 900px; margin: 30px auto; text-align: center; }
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f7e8e8, #f5d4d4);
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+        .info-contacto {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+            margin-bottom: 25px;
+        }
+
+        .info-contacto h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .info-contacto p {
+            font-size: 17px;
+            margin: 8px 0;
+        }
+
+        .quejas {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -28,14 +90,25 @@
 </nav>
 
 <div class="contenedor">
-     <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1350&q=80"
-     style="display:block; margin:20px auto; width:300px; border-radius:10px;">
 
-    <h2>¿Tienes una queja?</h2>
-    <p>Perfecto, puedes dejarla aquí mismo:</p>
-    <h3>👉 Me dan igual las quejas 😎</h3>
-    <p>Gracias por tu comprensión.</p>
+    <!-- ⭐ BLOQUE DE INFORMACIÓN CON ICONOS -->
+    <div class="info-contacto">
+        <h2>Información de contacto</h2>
+
+        <p><i class="fas fa-phone"></i> Teléfono: 666 123 456</p>
+        <p><i class="fas fa-envelope"></i> Email: tiesasolution@gmail.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Ubicación: Mairena del Aljarafe</p>
+        <p><i class="fas fa-clock"></i> Horario: L–V de 9:00 a 20:00</p>
+    </div>
+
+    <!-- ⭐ APARTADO DE QUEJAS -->
+    <div class="quejas">
+        <h2>Quejas</h2>
+        <p>Las quejas nos dan igual, pero puedes dejarlas aquí si te hace ilusión 😄</p>
+    </div>
+
 </div>
 
 </body>
 </html>
+
