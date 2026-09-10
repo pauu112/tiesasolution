@@ -47,16 +47,17 @@
         z-index: 2;
     }
 
+    /* ⭐ CORREGIDO: usa perro_moto.jpg y z-index muy alto */
     #perro {
         position: absolute;
         width: 140px;
         height: 100px;
-        background-image: url('perro_moto.png');
+        background-image: url('perro_moto.jpg'); 
         background-size: cover;
         background-position: center;
         bottom: 80px;
         left: 50px;
-        z-index: 3;
+        z-index: 9999; /* ⭐ Nunca queda detrás de nada */
     }
 
     .obstaculo {
@@ -206,13 +207,11 @@
         let obs = document.createElement("div");
         obs.classList.add("obstaculo");
 
-        /* ⭐ Enemigos aleatorios */
         const enemigos = ["goomba.png", "caja.png", "tubo.png", "bloque.png"];
         const elegido = enemigos[Math.floor(Math.random() * enemigos.length)];
         obs.style.backgroundImage = `url('${elegido}')`;
         obs.style.backgroundSize = "cover";
 
-        /* ⭐ Altos y bajos */
         let tipo = Math.random() < 0.5 ? "bajo" : "alto";
 
         if (tipo === "bajo") {
@@ -231,7 +230,6 @@
         }, 2000);
     }
 
-    /* ⭐ Estrellas para recuperar vidas */
     function crearEstrella() {
         if (juegoTerminado) return;
 
