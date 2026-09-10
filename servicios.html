@@ -5,123 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tiesa Solution - Servicios</title>
 
-    <!-- Tipografía profesional Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-    <!-- Iconos Font Awesome -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <style>
-        /* Animación de carga suave */
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #f0f0f0, #d9e4f5);
-            animation: fadeIn 0.6s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        header { background: #222; color: white; padding: 20px; text-align: center; }
+        nav { background: #333; padding: 10px; text-align: center; }
+        nav a { color: #fff; margin: 0 15px; text-decoration: none; font-size: 18px; font-weight: bold; }
 
-        header { 
-            background: #222; 
-            color: white; 
-            padding: 20px; 
-            text-align: center; 
-        }
-
-        nav { 
-            background: #333; 
-            padding: 10px; 
-            text-align: center; 
-        }
-
-        nav a { 
-            color: #fff; 
-            margin: 0 15px; 
-            text-decoration: none; 
-            font-size: 18px; 
-            font-weight: bold; 
-        }
-
-        .contenedor { 
-            width: 90%; 
-            max-width: 900px; 
-            margin: 30px auto; 
-
-            /* 2 columnas */
+        .contenedor {
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
         }
 
-        /* Tarjetas más pequeñas + animación suave */
-        .servicio { 
-            background: white; 
-            padding: 15px; 
-            border-radius: 8px; 
-            box-shadow: 0 0 5px rgba(0,0,0,0.1); 
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        .servicio {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
             text-align: center;
         }
 
-        .servicio:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-        }
+        .servicio img { width: 100%; border-radius: 8px; }
 
-        .servicio img { 
-            width: 100%; 
-            border-radius: 8px; 
-            margin-top: 10px; 
-        }
-
-        /* Imagen de recados más grande */
-        .img-recados {
-            width: 100%;
-            height: 230px;
-            object-fit: cover;
+        .boton {
+            display: inline-block;
+            background: #ffcc00;
+            color: #000;
+            padding: 12px 20px;
             border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 20px;
         }
 
-        /* Botón centrado */
-        .boton { 
-            display: inline-block; 
-            background: #ffcc00; 
-            color: #000; 
-            padding: 12px 20px; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            text-decoration: none; 
-            margin-top: 20px; 
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .boton:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        }
-
-        /* Sección Sobre Nosotros */
         .sobre {
-            grid-column: span 2; /* ocupa toda la fila */
+            grid-column: span 2;
             background: white;
             padding: 25px;
             border-radius: 10px;
             margin-top: 30px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.15);
             text-align: center;
-        }
-
-        .sobre h2 {
-            margin-bottom: 10px;
-        }
-
-        .sobre p {
-            font-size: 16px;
-            color: #444;
         }
     </style>
 </head>
@@ -141,7 +75,6 @@
 
 <div class="contenedor">
 
-    <!-- 🚗 SERVICIO DE RECOGIDA -->
     <div class="servicio">
         <h3><i class="fas fa-car-side"></i> Servicio de recogida</h3>
         <p>Te recogemos donde necesites, rápido y seguro.</p>
@@ -149,28 +82,24 @@
         <a class="boton" href="recogida.html">Ver más</a>
     </div>
 
-    <!-- 🛒 RECADOS PERSONALES -->
     <div class="servicio">
         <h3><i class="fas fa-shopping-basket"></i> Recados personales</h3>
-        <p>Hacemos cualquier recado por ti: compras, entregas, trámites.</p>
-        <img src="perro_carrito.png" class="img-recados">
+        <p>Hacemos cualquier recado por ti.</p>
+        <img src="perro_carrito.png">
         <a class="boton" href="recados.html">Ver más</a>
     </div>
 
-    <!-- 💆 MASAJES -->
     <div class="servicio">
         <h3><i class="fas fa-spa"></i> Masajes</h3>
-        <p>Masajes relajantes y terapéuticos a domicilio.</p>
+        <p>Masajes relajantes y terapéuticos.</p>
         <img src="perro_masaje.jpg">
         <a class="boton" href="masajes.html">Ver más</a>
     </div>
 
-    <!-- ⭐ SOBRE NOSOTROS -->
     <div class="sobre">
         <h2>Sobre Tiesa Solution</h2>
         <p>Somos expertos en ayudarte con tus recados, tus masajes, tus recogidas…  
-        y en poner animales haciendo cosas que no deberían hacer.  
-        Profesionalidad con humor, como debe ser.</p>
+        y en poner animales haciendo cosas que no deberían hacer.</p>
     </div>
 
 </div>
