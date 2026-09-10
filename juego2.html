@@ -10,15 +10,14 @@
         margin: 0;
         overflow: hidden;
         font-family: Arial, sans-serif;
-        background: #87CEEB; /* Cielo azul */
+        background: #87CEEB;
     }
 
-    /* ⭐ Fondo con nubes estilo Mario */
     #fondoNubes {
         position: absolute;
         width: 200%;
         height: 100%;
-        background: url('nubes_mario.jpg') repeat-x; /* ⭐ TU ARCHIVO REAL */
+        background: url('nubes_mario.jpg') repeat-x;
         background-size: contain;
         animation: moverNubes 20s linear infinite;
         top: 0;
@@ -31,14 +30,23 @@
         to { transform: translateX(-50%); }
     }
 
+    #suelo {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 80px;
+        background: #8B4513;
+        border-top: 5px solid #5A2E0E;
+        z-index: 1;
+    }
+
     #game {
         position: relative;
         width: 100vw;
         height: 100vh;
-        z-index: 1; /* El juego va encima del fondo */
+        z-index: 2;
     }
 
-    /* 🐶 Perro en moto */
     #perro {
         position: absolute;
         width: 140px;
@@ -46,26 +54,34 @@
         background-image: url('perro_moto.png');
         background-size: cover;
         background-position: center;
-        bottom: 50px;
+        bottom: 80px;
         left: 50px;
-        z-index: 2;
+        z-index: 3;
     }
 
-    /* Obstáculo */
     .obstaculo {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        left: 100%;
+        animation: mover 2s linear infinite;
+        z-index: 3;
+    }
+
+    .estrella {
         position: absolute;
         width: 50px;
         height: 50px;
-        background: #333;
-        bottom: 50px;
+        background-image: url('estrella.png');
+        background-size: cover;
         left: 100%;
-        animation: mover 2s linear infinite;
-        z-index: 2;
+        animation: mover 3s linear infinite;
+        z-index: 3;
     }
 
     @keyframes mover {
         from { left: 100%; }
-        to { left: -60px; }
+        to { left: -80px; }
     }
 
     #puntuacion {
@@ -75,7 +91,7 @@
         font-size: 24px;
         font-weight: bold;
         color: #000;
-        z-index: 3;
+        z-index: 4;
     }
 
     #vidas {
@@ -84,7 +100,7 @@
         right: 20px;
         font-size: 30px;
         color: gold;
-        z-index: 3;
+        z-index: 4;
     }
 
     #gameOver {
@@ -95,7 +111,7 @@
         font-size: 40px;
         color: red;
         display: none;
-        z-index: 3;
+        z-index: 4;
     }
 
     #reiniciarBtn {
@@ -111,15 +127,15 @@
         border-radius: 10px;
         cursor: pointer;
         display: none;
-        z-index: 3;
+        z-index: 4;
     }
 </style>
 </head>
 
 <body>
 
-<!-- ⭐ Fondo de nubes -->
 <div id="fondoNubes"></div>
+<div id="suelo"></div>
 
 <div id="game">
     <div id="perro"></div>
@@ -137,6 +153,9 @@
     const gameOverText = document.getElementById("gameOver");
     const reiniciarBtn = document.getElementById("reiniciarBtn");
 
+    const sonidoSalto = new Audio("salto.mp3");
+    const sonidoChoque = new Audio("choque.mp3");
+
     let saltando = false;
     let puntos = 0;
     let vidas = 3;
@@ -148,25 +167,28 @@
 
     actualizarVidas();
 
-    /* ⭐ SALTO CON CLIC Y CON TECLADO */
     document.body.onclick = saltar;
     document.body.onkeydown = saltar;
 
     function saltar() {
         if (!saltando && !juegoTerminado) {
+
+            sonidoSalto.currentTime = 0;
+            sonidoSalto.play();
+
             saltando = true;
             let salto = 0;
 
             const intervalo = setInterval(() => {
                 salto += 5;
-                perro.style.bottom = (50 + salto) + "px";
+                perro.style.bottom = (80 + salto) + "px";
 
-                if (salto >= 120) {
+                if (salto >= 140) {
                     clearInterval(intervalo);
 
                     const bajar = setInterval(() => {
                         salto -= 5;
-                        perro.style.bottom = (50 + salto) + "px";
+                        perro.style.bottom = (80 + salto) + "px";
 
                         if (salto <= 0) {
                             clearInterval(bajar);
@@ -183,6 +205,22 @@
 
         let obs = document.createElement("div");
         obs.classList.add("obstaculo");
+
+        /* ⭐ Enemigos aleatorios */
+        const enemigos = ["goomba.png", "caja.png", "tubo.png", "bloque.png"];
+        const elegido = enemigos[Math.floor(Math.random() * enemigos.length)];
+        obs.style.backgroundImage = `url('${elegido}')`;
+        obs.style.backgroundSize = "cover";
+
+        /* ⭐ Altos y bajos */
+        let tipo = Math.random() < 0.5 ? "bajo" : "alto";
+
+        if (tipo === "bajo") {
+            obs.style.bottom = "80px";
+        } else {
+            obs.style.bottom = "200px";
+        }
+
         game.appendChild(obs);
 
         puntos++;
@@ -193,22 +231,44 @@
         }, 2000);
     }
 
+    /* ⭐ Estrellas para recuperar vidas */
+    function crearEstrella() {
+        if (juegoTerminado) return;
+
+        let estrella = document.createElement("div");
+        estrella.classList.add("estrella");
+        estrella.style.bottom = Math.random() < 0.5 ? "200px" : "120px";
+
+        game.appendChild(estrella);
+
+        setTimeout(() => {
+            estrella.remove();
+        }, 3000);
+    }
+
     setInterval(crearObstaculo, 1500);
+    setInterval(crearEstrella, 5000);
 
     function actualizar() {
         if (juegoTerminado) return;
 
-        document.querySelectorAll(".obstaculo").forEach(obs => {
+        document.querySelectorAll(".obstaculo, .estrella").forEach(obj => {
             let perroRect = perro.getBoundingClientRect();
-            let obsRect = obs.getBoundingClientRect();
+            let objRect = obj.getBoundingClientRect();
 
             if (
-                perroRect.left < obsRect.right &&
-                perroRect.right > obsRect.left &&
-                perroRect.top < obsRect.bottom &&
-                perroRect.bottom > obsRect.top
+                perroRect.left < objRect.right &&
+                perroRect.right > objRect.left &&
+                perroRect.top < objRect.bottom &&
+                perroRect.bottom > objRect.top
             ) {
-                perderVida();
+                if (obj.classList.contains("estrella")) {
+                    if (vidas < 3) vidas++;
+                    actualizarVidas();
+                    obj.remove();
+                } else {
+                    perderVida();
+                }
             }
         });
 
@@ -216,6 +276,9 @@
     }
 
     function perderVida() {
+        sonidoChoque.currentTime = 0;
+        sonidoChoque.play();
+
         vidas--;
         actualizarVidas();
 
@@ -239,9 +302,9 @@
         gameOverText.style.display = "none";
         reiniciarBtn.style.display = "none";
 
-        document.querySelectorAll(".obstaculo").forEach(o => o.remove());
+        document.querySelectorAll(".obstaculo, .estrella").forEach(o => o.remove());
 
-        perro.style.bottom = "50px";
+        perro.style.bottom = "80px";
 
         actualizar();
     };
