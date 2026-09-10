@@ -13,65 +13,28 @@
             margin: 0;
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #f7e8e8, #f5d4d4);
-            animation: fadeIn 0.6s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        header { background: #222; color: white; padding: 20px; text-align: center; }
+        nav { background: #333; padding: 10px; text-align: center; }
+        nav a { color: #fff; margin: 0 15px; text-decoration: none; font-size: 18px; font-weight: bold; }
 
-        header {
-            background: #222;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        nav {
-            background: #333;
-            padding: 10px;
-            text-align: center;
-        }
-
-        nav a {
-            color: #fff;
-            margin: 0 15px;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .contenedor {
-            width: 90%;
-            max-width: 900px;
-            margin: 30px auto;
-        }
+        .contenedor { width: 90%; max-width: 900px; margin: 30px auto; }
 
         .info-contacto {
             background: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.15);
             margin-bottom: 25px;
-        }
-
-        .info-contacto h2 {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .info-contacto p {
-            font-size: 17px;
-            margin: 8px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
         }
 
         .quejas {
             background: white;
             padding: 25px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.15);
             text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
         }
 
         .quejas img {
@@ -98,23 +61,18 @@
 
 <div class="contenedor">
 
-    <!-- ⭐ BLOQUE DE INFORMACIÓN -->
     <div class="info-contacto">
         <h2>Información de contacto</h2>
-
         <p><i class="fas fa-phone"></i> Teléfono: 666 123 456</p>
         <p><i class="fas fa-envelope"></i> Email: tiesasolution@gmail.com</p>
         <p><i class="fas fa-map-marker-alt"></i> Ubicación: Mairena del Aljarafe</p>
         <p><i class="fas fa-clock"></i> Horario: L–V de 9:00 a 20:00</p>
     </div>
 
-    <!-- ⭐ APARTADO DE QUEJAS -->
     <div class="quejas">
         <h2>Quejas</h2>
         <p>Las quejas nos dan igual, pero puedes dejarlas aquí si te hace ilusión 😄</p>
-
-        <!-- FOTO RESTAURADA -->
-        <img src="perro_camioneta.jpg" alt="Perro triste">
+        <img src="perro_camioneta.jpg">
     </div>
 
 </div>
