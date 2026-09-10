@@ -15,8 +15,6 @@
         body { 
             margin: 0; 
             font-family: 'Poppins', sans-serif; 
-
-            /* Fondo degradado moderno */
             background: linear-gradient(135deg, #f0f0f0, #d9e4f5);
         }
 
@@ -45,16 +43,21 @@
             width: 90%; 
             max-width: 900px; 
             margin: 30px auto; 
+
+            /* 2 columnas */
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
 
-        /* Tarjetas de servicios con animación suave */
+        /* Tarjetas más pequeñas + animación suave */
         .servicio { 
             background: white; 
             padding: 15px; 
-            margin-bottom: 15px; 
             border-radius: 8px; 
             box-shadow: 0 0 5px rgba(0,0,0,0.1); 
             transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-align: center; /* Centrar contenido */
         }
 
         .servicio:hover {
@@ -68,6 +71,7 @@
             margin-top: 10px; 
         }
 
+        /* Botón centrado */
         .boton { 
             display: inline-block; 
             background: #ffcc00; 
@@ -130,4 +134,3 @@
 
 </body>
 </html>
-
