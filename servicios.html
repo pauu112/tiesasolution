@@ -11,9 +11,35 @@
         nav { background: #333; padding: 10px; text-align: center; }
         nav a { color: #fff; margin: 0 15px; text-decoration: none; font-size: 18px; font-weight: bold; }
         .contenedor { width: 90%; max-width: 900px; margin: 30px auto; }
-        .servicio { background: white; padding: 15px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
-        .servicio img { width: 100%; border-radius: 8px; margin-top: 10px; }
-        .boton { display: inline-block; background: #ffcc00; color: #000; padding: 12px 20px; border-radius: 8px; font-weight: bold; text-decoration: none; margin-top: 20px; }
+
+        .servicio {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .servicio img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .boton {
+            display: inline-block;
+            background: #ffcc00;
+            color: #000;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
@@ -33,26 +59,32 @@
 
     <!-- 🚗 SERVICIO DE RECOGIDA -->
     <div class="servicio">
-        <h3>🚗 Servicio de recogida</h3>
-        <p>Te recogemos donde necesites, rápido y seguro.</p>
-        <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1350&q=80">
-        <a class="boton" href="recogida.html">Ver más</a>
+        <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=600&q=80">
+        <div>
+            <h3>🚗 Servicio de recogida</h3>
+            <p>Te recogemos donde necesites, rápido y seguro.</p>
+            <a class="boton" href="recogida.html">Ver más</a>
+        </div>
     </div>
 
     <!-- 🛒 RECADOS PERSONALES -->
     <div class="servicio">
-        <h3>🛒 Recados personales</h3>
-        <p>Hacemos cualquier recado por ti: compras, entregas, trámites.</p>
-        <img src="https://images.unsplash.com/photo-1581579185169-1cdbd5f1f7a5?auto=format&fit=crop&w=1350&q=80">
-        <a class="boton" href="recados.html">Ver más</a>
+        <img src="https://images.unsplash.com/photo-1581579185169-1cdbd5f1f7a5?auto=format&fit=crop&w=600&q=80">
+        <div>
+            <h3>🛒 Recados personales</h3>
+            <p>Hacemos cualquier recado por ti: compras, entregas, trámites.</p>
+            <a class="boton" href="recados.html">Ver más</a>
+        </div>
     </div>
 
     <!-- 💆 MASAJES -->
     <div class="servicio">
-        <h3>💆 Masajes</h3>
-        <p>Masajes relajantes y terapéuticos a domicilio.</p>
-        <img src="https://images.unsplash.com/photo-1556228724-4c1d1a1e1b1b?auto=format&fit=crop&w=1350&q=80">
-        <a class="boton" href="masajes.html">Ver más</a>
+        <img src="https://images.unsplash.com/photo-1556228724-4c1d1a1e1b1b?auto=format&fit=crop&w=600&q=80">
+        <div>
+            <h3>💆 Masajes</h3>
+            <p>Masajes relajantes y terapéuticos a domicilio.</p>
+            <a class="boton" href="masajes.html">Ver más</a>
+        </div>
     </div>
 
 </div>
