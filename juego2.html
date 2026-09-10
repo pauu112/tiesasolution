@@ -9,15 +9,33 @@
     body {
         margin: 0;
         overflow: hidden;
-        background: #f7f7f7;
         font-family: Arial, sans-serif;
+        background: #87CEEB; /* Cielo azul */
+    }
+
+    /* ⭐ Fondo con nubes estilo Mario */
+    #fondoNubes {
+        position: absolute;
+        width: 200%;
+        height: 100%;
+        background: url('nubes_mario.jpg') repeat-x; /* ⭐ SUBE UNA IMAGEN DE NUBES */
+        background-size: contain;
+        animation: moverNubes 20s linear infinite;
+        top: 0;
+        left: 0;
+        z-index: 0;
+    }
+
+    @keyframes moverNubes {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
     }
 
     #game {
         position: relative;
         width: 100vw;
         height: 100vh;
-        background: #f7f7f7;
+        z-index: 1; /* El juego va encima del fondo */
     }
 
     /* 🐶 Perro en moto */
@@ -25,11 +43,12 @@
         position: absolute;
         width: 140px;
         height: 100px;
-        background-image: url('perro_moto.jpg'); /* ⭐ TU IMAGEN AQUÍ */
+        background-image: url('perro_moto.jpg');
         background-size: cover;
         background-position: center;
         bottom: 50px;
         left: 50px;
+        z-index: 2;
     }
 
     /* Obstáculo */
@@ -41,6 +60,7 @@
         bottom: 50px;
         left: 100%;
         animation: mover 2s linear infinite;
+        z-index: 2;
     }
 
     @keyframes mover {
@@ -55,6 +75,16 @@
         font-size: 24px;
         font-weight: bold;
         color: #000;
+        z-index: 3;
+    }
+
+    #vidas {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 30px;
+        color: gold;
+        z-index: 3;
     }
 
     #gameOver {
@@ -65,27 +95,58 @@
         font-size: 40px;
         color: red;
         display: none;
+        z-index: 3;
+    }
+
+    #reiniciarBtn {
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 15px 25px;
+        font-size: 20px;
+        background: #222;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        display: none;
+        z-index: 3;
     }
 </style>
 </head>
 
 <body>
 
+<!-- ⭐ Fondo de nubes -->
+<div id="fondoNubes"></div>
+
 <div id="game">
     <div id="perro"></div>
     <div id="puntuacion">Puntos: 0</div>
+    <div id="vidas">⭐ ⭐ ⭐</div>
     <div id="gameOver">GAME OVER</div>
+    <button id="reiniciarBtn">Reiniciar juego</button>
 </div>
 
 <script>
     const perro = document.getElementById("perro");
     const game = document.getElementById("game");
     const puntuacion = document.getElementById("puntuacion");
+    const vidasTexto = document.getElementById("vidas");
     const gameOverText = document.getElementById("gameOver");
+    const reiniciarBtn = document.getElementById("reiniciarBtn");
 
     let saltando = false;
     let puntos = 0;
+    let vidas = 3;
     let juegoTerminado = false;
+
+    function actualizarVidas() {
+        vidasTexto.textContent = "⭐ ".repeat(vidas);
+    }
+
+    actualizarVidas();
 
     document.body.onkeydown = () => {
         if (!saltando && !juegoTerminado) {
@@ -143,17 +204,43 @@
                 perroRect.top < obsRect.bottom &&
                 perroRect.bottom > obsRect.top
             ) {
-                terminarJuego();
+                perderVida();
             }
         });
 
         requestAnimationFrame(actualizar);
     }
 
+    function perderVida() {
+        vidas--;
+        actualizarVidas();
+
+        if (vidas <= 0) {
+            terminarJuego();
+        }
+    }
+
     function terminarJuego() {
         juegoTerminado = true;
         gameOverText.style.display = "block";
+        reiniciarBtn.style.display = "block";
     }
+
+    reiniciarBtn.onclick = () => {
+        juegoTerminado = false;
+        puntos = 0;
+        vidas = 3;
+        puntuacion.textContent = "Puntos: 0";
+        actualizarVidas();
+        gameOverText.style.display = "none";
+        reiniciarBtn.style.display = "none";
+
+        document.querySelectorAll(".obstaculo").forEach(o => o.remove());
+
+        perro.style.bottom = "50px";
+
+        actualizar();
+    };
 
     actualizar();
 </script>
