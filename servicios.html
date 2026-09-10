@@ -15,7 +15,6 @@
             background: linear-gradient(135deg, #f0f0f0, #d9e4f5);
         }
 
-        /* ⭐ LOGO CORRECTO */
         .logo {
             position: fixed;
             top: 15px;
@@ -44,6 +43,14 @@
             border-radius: 8px;
             box-shadow: 0 0 5px rgba(0,0,0,0.1);
             text-align: center;
+
+            /* ⭐ EFECTO DE AGRANDAR */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .servicio:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0,0,0,0.25);
         }
 
         .servicio img { width: 100%; border-radius: 8px; }
@@ -68,7 +75,6 @@
             text-align: center;
         }
 
-        /* ⭐ BOTÓN MODO OSCURO */
         .modo-btn {
             position: fixed;
             bottom: 20px;
@@ -88,23 +94,14 @@
             background: #444;
         }
 
-        /* ⭐ MODO OSCURO */
         body.oscuro {
             background: #1a1a1a !important;
             color: #f1f1f1 !important;
         }
 
-        body.oscuro header {
-            background: #000 !important;
-        }
-
-        body.oscuro nav {
-            background: #111 !important;
-        }
-
-        body.oscuro nav a {
-            color: #ffcc00 !important;
-        }
+        body.oscuro header { background: #000 !important; }
+        body.oscuro nav { background: #111 !important; }
+        body.oscuro nav a { color: #ffcc00 !important; }
 
         body.oscuro .servicio,
         body.oscuro .precio,
@@ -114,6 +111,11 @@
             background: #2a2a2a !important;
             color: #f1f1f1 !important;
             box-shadow: 0 0 10px rgba(255,255,255,0.1) !important;
+        }
+
+        /* ⭐ EFECTO HOVER EN MODO OSCURO */
+        body.oscuro .servicio:hover {
+            box-shadow: 0 0 15px rgba(255,255,255,0.25) !important;
         }
     </style>
 </head>
@@ -134,7 +136,6 @@
     <a href="quejas.html">Quejas</a>
     <a href="juego.html">Juego 1</a>
     <a href="juego2.html">Juego 2</a>
-
 </nav>
 
 <div class="contenedor">
