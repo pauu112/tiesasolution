@@ -5,40 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tiesa Solution - Servicios</title>
 
+    <!-- Tipografía profesional Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
     <style>
-        body { margin: 0; font-family: Arial, sans-serif; background: #f4f4f4; }
-        header { background: #222; color: white; padding: 20px; text-align: center; }
-        nav { background: #333; padding: 10px; text-align: center; }
-        nav a { color: #fff; margin: 0 15px; text-decoration: none; font-size: 18px; font-weight: bold; }
-        .contenedor { width: 90%; max-width: 900px; margin: 30px auto; }
-
-        .servicio {
-            background: white;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
-            display: flex;
-            gap: 15px;
-            align-items: center;
+        body { 
+            margin: 0; 
+            font-family: 'Poppins', sans-serif; 
+            background: #f4f4f4; 
         }
 
-        .servicio img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px;
+        header { 
+            background: #222; 
+            color: white; 
+            padding: 20px; 
+            text-align: center; 
         }
 
-        .boton {
-            display: inline-block;
-            background: #ffcc00;
-            color: #000;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-weight: bold;
-            text-decoration: none;
-            margin-top: 10px;
+        nav { 
+            background: #333; 
+            padding: 10px; 
+            text-align: center; 
+        }
+
+        nav a { 
+            color: #fff; 
+            margin: 0 15px; 
+            text-decoration: none; 
+            font-size: 18px; 
+            font-weight: bold; 
+        }
+
+        .contenedor { 
+            width: 90%; 
+            max-width: 900px; 
+            margin: 30px auto; 
+        }
+
+        /* Tarjetas de servicios con animación suave */
+        .servicio { 
+            background: white; 
+            padding: 15px; 
+            margin-bottom: 15px; 
+            border-radius: 8px; 
+            box-shadow: 0 0 5px rgba(0,0,0,0.1); 
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .servicio:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+
+        .servicio img { 
+            width: 100%; 
+            border-radius: 8px; 
+            margin-top: 10px; 
+        }
+
+        .boton { 
+            display: inline-block; 
+            background: #ffcc00; 
+            color: #000; 
+            padding: 12px 20px; 
+            border-radius: 8px; 
+            font-weight: bold; 
+            text-decoration: none; 
+            margin-top: 20px; 
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .boton:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
         }
     </style>
 </head>
@@ -60,32 +99,26 @@
 
     <!-- 🚗 SERVICIO DE RECOGIDA -->
     <div class="servicio">
+        <h3>🚗 Servicio de recogida</h3>
+        <p>Te recogemos donde necesites, rápido y seguro.</p>
         <img src="perro_camioneta.jpg">
-        <div>
-            <h3>🚗 Servicio de recogida</h3>
-            <p>Te recogemos donde necesites, rápido y seguro.</p>
-            <a class="boton" href="recogida.html">Ver más</a>
-        </div>
+        <a class="boton" href="recogida.html">Ver más</a>
     </div>
 
     <!-- 🛒 RECADOS PERSONALES -->
     <div class="servicio">
+        <h3>🛒 Recados personales</h3>
+        <p>Hacemos cualquier recado por ti: compras, entregas, trámites.</p>
         <img src="perro_carrito.png">
-        <div>
-            <h3>🛒 Recados personales</h3>
-            <p>Hacemos cualquier recado por ti: compras, entregas, trámites.</p>
-            <a class="boton" href="recados.html">Ver más</a>
-        </div>
+        <a class="boton" href="recados.html">Ver más</a>
     </div>
 
     <!-- 💆 MASAJES -->
     <div class="servicio">
+        <h3>💆 Masajes</h3>
+        <p>Masajes relajantes y terapéuticos a domicilio.</p>
         <img src="perro_masaje.jpg">
-        <div>
-            <h3>💆 Masajes</h3>
-            <p>Masajes relajantes y terapéuticos a domicilio.</p>
-            <a class="boton" href="masajes.html">Ver más</a>
-        </div>
+        <a class="boton" href="masajes.html">Ver más</a>
     </div>
 
 </div>
