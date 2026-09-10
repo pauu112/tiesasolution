@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiesa Solution - Servicios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+        }
+        .servicio {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: #222;
+            color: white;
+            padding: 12px;
+            border: none;
+            margin-top: 15px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #444;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Tiesa Solution</h1>
+    <p>Servicios personalizados: Recogidas · Recados · Masajes</p>
+</header>
+
+<section>
+    <h2>Servicios disponibles</h2>
+
+    <div class="servicio">
+        <h3>Servicio de recogida</h3>
+        <p>Te recogemos donde necesites, rápido y seguro.</p>
+    </div>
+
+    <div class="servicio">
+        <h3>Recados personales</h3>
+        <p>Hacemos cualquier recado por ti: compras, entregas, trámites.</p>
+    </div>
+
+    <div class="servicio">
+        <h3>Masajes</h3>
+        <p>Masajes relajantes y terapéuticos a domicilio.</p>
+    </div>
+</section>
+
+<section>
+    <h2>Contratar un servicio</h2>
+
+    <!-- FORMULARIO CON FORMSPREE -->
+    <form action="https://formspree.io/f/movqzjvp" method="POST">
+        <label>Nombre completo</label>
+        <input type="text" name="nombre" required>
+
+        <label>Teléfono</label>
+        <input type="text" name="telefono" required>
+
+        <label>Correo electrónico</label>
+        <input type="email" name="email" required>
+
+        <label>Servicio que desea contratar</label>
+        <select name="servicio" required>
+            <option value="Recogida">Recogida</option>
+            <option value="Recado">Recado</option>
+            <option value="Masaje">Masaje</option>
+        </select>
+
+        <label>Detalles adicionales</label>
+        <textarea name="detalles" rows="5"></textarea>
+
+        <button type="submit">Enviar solicitud</button>
+    </form>
+
+    <!-- AVISO POR WHATSAPP -->
+    <p style="margin-top:20px; text-align:center;">
+        También puedes contactar por WhatsApp:
+        <br>
+        <a href="https://wa.me/34TU_NUMERO" target="_blank">Enviar mensaje por WhatsApp</a>
+    </p>
+
+</section>
+
+</body>
+</html>
