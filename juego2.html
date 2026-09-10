@@ -47,12 +47,14 @@
         z-index: 2;
     }
 
+    /* ⭐ Nuevo personaje con fondo transparente */
     #perro {
         position: absolute;
         width: 140px;
-        height: 100px;
-        background-image: url('perro_moto.jpg');
-        background-size: cover;
+        height: 140px;
+        background-image: url('perro_personaje.jpg');
+        background-size: contain;
+        background-repeat: no-repeat;
         background-position: center;
         bottom: 80px;
         left: 50px;
@@ -130,14 +132,8 @@
         z-index: 4;
     }
 
-    #reiniciarBtn {
-        top: 55%;
-    }
-
-    #volverBtn {
-        top: 65%;
-        background: #0055ff;
-    }
+    #reiniciarBtn { top: 55%; }
+    #volverBtn { top: 65%; background: #0055ff; }
 </style>
 </head>
 
@@ -234,18 +230,14 @@
             obs.style.backgroundColor = colores[Math.floor(Math.random() * colores.length)];
         }
 
-        let tipo = Math.random() < 0.5 ? "bajo" : "alto";
-
-        obs.style.bottom = tipo === "bajo" ? "80px" : "200px";
+        obs.style.bottom = Math.random() < 0.5 ? "80px" : "200px";
 
         game.appendChild(obs);
 
         puntos++;
         puntuacion.textContent = "Puntos: " + puntos;
 
-        setTimeout(() => {
-            obs.remove();
-        }, 2000);
+        setTimeout(() => obs.remove(), 2000);
     }
 
     function crearEstrella() {
@@ -254,12 +246,8 @@
         let estrella = document.createElement("div");
         estrella.classList.add("estrella");
         estrella.style.bottom = Math.random() < 0.5 ? "200px" : "120px";
-
         game.appendChild(estrella);
-
-        setTimeout(() => {
-            estrella.remove();
-        }, 3000);
+        setTimeout(() => estrella.remove(), 3000);
     }
 
     setInterval(crearObstaculo, 1500);
@@ -304,11 +292,9 @@
             return;
         }
 
-        /* ⭐ REINICIO SEGURO PARA NO MORIR DE GOLPE */
         perro.style.bottom = "80px";
         perro.style.left = "50px";
 
-        /* ⭐ Elimina obstáculos que estén tocando */
         document.querySelectorAll(".obstaculo").forEach(o => {
             let r = o.getBoundingClientRect();
             let p = perro.getBoundingClientRect();
