@@ -9,7 +9,7 @@
     body {
         margin: 0;
         overflow: hidden;
-        background: #87CEEB;
+        background: #4CAF50; /* ⭐ Fondo verde */
         font-family: Arial, sans-serif;
     }
 
@@ -17,14 +17,13 @@
         position: relative;
         width: 100vw;
         height: 100vh;
-        background: #87CEEB;
     }
 
     #perro {
         position: absolute;
         width: 60px;
         height: 60px;
-        background-image: url('perro_camioneta.jpg'); /* Puedes cambiar la imagen */
+        background-image: url('perro_camioneta.jpg');
         background-size: cover;
         top: 50%;
         left: 20%;
@@ -52,6 +51,14 @@
         color: white;
     }
 
+    #vidas {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 30px;
+        color: gold;
+    }
+
     #gameOver {
         position: absolute;
         top: 40%;
@@ -61,6 +68,26 @@
         color: red;
         display: none;
     }
+
+    #reiniciarBtn, #volverBtn {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 15px 25px;
+        font-size: 20px;
+        background: #222;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        display: none;
+    }
+
+    #volverBtn {
+        top: 70%;
+        background: #0055ff;
+    }
 </style>
 </head>
 
@@ -69,25 +96,40 @@
 <div id="game">
     <div id="perro"></div>
     <div id="puntuacion">Puntos: 0</div>
+    <div id="vidas">⭐ ⭐ ⭐</div>
     <div id="gameOver">GAME OVER</div>
+    <button id="reiniciarBtn">Reiniciar</button>
+    <button id="volverBtn">Volver al menú</button>
 </div>
 
 <script>
     const perro = document.getElementById("perro");
     const game = document.getElementById("game");
     const puntuacion = document.getElementById("puntuacion");
+    const vidasTexto = document.getElementById("vidas");
     const gameOverText = document.getElementById("gameOver");
+    const reiniciarBtn = document.getElementById("reiniciarBtn");
+    const volverBtn = document.getElementById("volverBtn");
 
     let velocidad = 0;
     let gravedad = 0.5;
     let puntos = 0;
+    let vidas = 3;
     let juegoTerminado = false;
+
+    function actualizarVidas() {
+        vidasTexto.textContent = "⭐ ".repeat(vidas);
+    }
+
+    actualizarVidas();
+
+    /* ⭐ SALTO CON CLIC Y TECLADO */
+    document.body.onclick = saltar;
+    document.body.onkeydown = saltar;
 
     function saltar() {
         if (!juegoTerminado) velocidad = -10;
     }
-
-    document.body.onkeydown = saltar;
 
     function crearObstaculo() {
         if (juegoTerminado) return;
@@ -126,7 +168,7 @@
         perro.style.top = (perro.offsetTop + velocidad) + "px";
 
         if (perro.offsetTop > window.innerHeight || perro.offsetTop < 0) {
-            terminarJuego();
+            perderVida();
         }
 
         document.querySelectorAll(".obstaculo").forEach(obs => {
@@ -139,17 +181,52 @@
                 perroRect.top < obsRect.bottom &&
                 perroRect.bottom > obsRect.top
             ) {
-                terminarJuego();
+                perderVida();
             }
         });
 
         requestAnimationFrame(actualizar);
     }
 
+    function perderVida() {
+        vidas--;
+        actualizarVidas();
+
+        if (vidas <= 0) {
+            terminarJuego();
+        } else {
+            velocidad = 0;
+            perro.style.top = "50%";
+        }
+    }
+
     function terminarJuego() {
         juegoTerminado = true;
         gameOverText.style.display = "block";
+        reiniciarBtn.style.display = "block";
+        volverBtn.style.display = "block";
     }
+
+    reiniciarBtn.onclick = () => {
+        juegoTerminado = false;
+        puntos = 0;
+        vidas = 3;
+        velocidad = 0;
+        perro.style.top = "50%";
+        puntuacion.textContent = "Puntos: 0";
+        actualizarVidas();
+        gameOverText.style.display = "none";
+        reiniciarBtn.style.display = "none";
+        volverBtn.style.display = "none";
+
+        document.querySelectorAll(".obstaculo").forEach(o => o.remove());
+
+        actualizar();
+    };
+
+    volverBtn.onclick = () => {
+        window.location.href = "index.html";
+    };
 
     actualizar();
 </script>
