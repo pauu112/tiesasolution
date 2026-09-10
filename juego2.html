@@ -47,17 +47,16 @@
         z-index: 2;
     }
 
-    /* ⭐ CORREGIDO: usa perro_moto.jpg y z-index muy alto */
     #perro {
         position: absolute;
         width: 140px;
         height: 100px;
-        background-image: url('perro_moto.jpg'); 
+        background-image: url('perro_moto.jpg');
         background-size: cover;
         background-position: center;
         bottom: 80px;
         left: 50px;
-        z-index: 9999; /* ⭐ Nunca queda detrás de nada */
+        z-index: 9999;
     }
 
     .obstaculo {
@@ -67,6 +66,7 @@
         left: 100%;
         animation: mover 2s linear infinite;
         z-index: 3;
+        background-size: cover;
     }
 
     .estrella {
@@ -115,9 +115,8 @@
         z-index: 4;
     }
 
-    #reiniciarBtn {
+    #reiniciarBtn, #volverBtn {
         position: absolute;
-        top: 55%;
         left: 50%;
         transform: translate(-50%, -50%);
         padding: 15px 25px;
@@ -129,6 +128,15 @@
         cursor: pointer;
         display: none;
         z-index: 4;
+    }
+
+    #reiniciarBtn {
+        top: 55%;
+    }
+
+    #volverBtn {
+        top: 65%;
+        background: #0055ff;
     }
 </style>
 </head>
@@ -144,6 +152,7 @@
     <div id="vidas">⭐ ⭐ ⭐</div>
     <div id="gameOver">GAME OVER</div>
     <button id="reiniciarBtn">Reiniciar juego</button>
+    <button id="volverBtn">Volver al menú</button>
 </div>
 
 <script>
@@ -153,6 +162,7 @@
     const vidasTexto = document.getElementById("vidas");
     const gameOverText = document.getElementById("gameOver");
     const reiniciarBtn = document.getElementById("reiniciarBtn");
+    const volverBtn = document.getElementById("volverBtn");
 
     const sonidoSalto = new Audio("salto.mp3");
     const sonidoChoque = new Audio("choque.mp3");
@@ -207,11 +217,29 @@
         let obs = document.createElement("div");
         obs.classList.add("obstaculo");
 
-        const enemigos = ["goomba.png", "caja.png", "tubo.png", "bloque.png"];
-        const elegido = enemigos[Math.floor(Math.random() * enemigos.length)];
-        obs.style.backgroundImage = `url('${elegido}')`;
-        obs.style.backgroundSize = "cover";
+        /* ⭐ Obstáculos visibles usando tus imágenes reales */
+        const imagenes = [
+            "perro_carrito.png",
+            "perro_masaje.jpg",
+            "perro_queja.jpg",
+            "logo_marca.jpg"
+        ];
 
+        /* ⭐ Obstáculos de colores */
+        const colores = [
+            "red", "blue", "yellow", "green"
+        ];
+
+        /* ⭐ 50% imagen - 50% cubo de color */
+        if (Math.random() < 0.5) {
+            const elegido = imagenes[Math.floor(Math.random() * imagenes.length)];
+            obs.style.backgroundImage = `url('${elegido}')`;
+        } else {
+            obs.style.backgroundImage = "none";
+            obs.style.backgroundColor = colores[Math.floor(Math.random() * colores.length)];
+        }
+
+        /* ⭐ Altos y bajos */
         let tipo = Math.random() < 0.5 ? "bajo" : "alto";
 
         if (tipo === "bajo") {
@@ -289,6 +317,7 @@
         juegoTerminado = true;
         gameOverText.style.display = "block";
         reiniciarBtn.style.display = "block";
+        volverBtn.style.display = "block";
     }
 
     reiniciarBtn.onclick = () => {
@@ -299,12 +328,17 @@
         actualizarVidas();
         gameOverText.style.display = "none";
         reiniciarBtn.style.display = "none";
+        volverBtn.style.display = "none";
 
         document.querySelectorAll(".obstaculo, .estrella").forEach(o => o.remove());
 
         perro.style.bottom = "80px";
 
         actualizar();
+    };
+
+    volverBtn.onclick = () => {
+        window.location.href = "index.html";
     };
 
     actualizar();
