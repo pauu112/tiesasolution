@@ -78,6 +78,14 @@
             margin-top: 10px; 
         }
 
+        /* Imagen de recados más grande */
+        .img-recados {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
         /* Botón centrado */
         .boton { 
             display: inline-block; 
@@ -94,6 +102,26 @@
         .boton:hover {
             transform: scale(1.05);
             box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        /* Sección Sobre Nosotros */
+        .sobre {
+            grid-column: span 2; /* ocupa toda la fila */
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        .sobre h2 {
+            margin-bottom: 10px;
+        }
+
+        .sobre p {
+            font-size: 16px;
+            color: #444;
         }
     </style>
 </head>
@@ -125,7 +153,7 @@
     <div class="servicio">
         <h3><i class="fas fa-shopping-basket"></i> Recados personales</h3>
         <p>Hacemos cualquier recado por ti: compras, entregas, trámites.</p>
-        <img src="perro_carrito.png">
+        <img src="perro_carrito.png" class="img-recados">
         <a class="boton" href="recados.html">Ver más</a>
     </div>
 
@@ -135,6 +163,14 @@
         <p>Masajes relajantes y terapéuticos a domicilio.</p>
         <img src="perro_masaje.jpg">
         <a class="boton" href="masajes.html">Ver más</a>
+    </div>
+
+    <!-- ⭐ SOBRE NOSOTROS -->
+    <div class="sobre">
+        <h2>Sobre Tiesa Solution</h2>
+        <p>Somos expertos en ayudarte con tus recados, tus masajes, tus recogidas…  
+        y en poner animales haciendo cosas que no deberían hacer.  
+        Profesionalidad con humor, como debe ser.</p>
     </div>
 
 </div>
