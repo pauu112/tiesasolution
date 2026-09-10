@@ -47,7 +47,6 @@
         z-index: 2;
     }
 
-    /* ⭐ Nuevo personaje con fondo transparente */
     #perro {
         position: absolute;
         width: 140px;
@@ -230,7 +229,10 @@
             obs.style.backgroundColor = colores[Math.floor(Math.random() * colores.length)];
         }
 
-        obs.style.bottom = Math.random() < 0.5 ? "80px" : "200px";
+        let tipo = Math.random() < 0.5 ? "bajo" : "alto";
+
+        /* ⭐ ALTOS SUBIDOS PARA QUE NO CHOQUE EL PERRO */
+        obs.style.bottom = tipo === "bajo" ? "80px" : "260px";
 
         game.appendChild(obs);
 
