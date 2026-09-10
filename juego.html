@@ -111,6 +111,10 @@
     const reiniciarBtn = document.getElementById("reiniciarBtn");
     const volverBtn = document.getElementById("volverBtn");
 
+    /* ⭐ SONIDOS AÑADIDOS */
+    const sonidoSalto = new Audio("salto.mp3");
+    const sonidoChoque = new Audio("choque.mp3");
+
     let velocidad = 0;
     let gravedad = 0.5;
     let puntos = 0;
@@ -128,7 +132,11 @@
     document.body.onkeydown = saltar;
 
     function saltar() {
-        if (!juegoTerminado) velocidad = -10;
+        if (!juegoTerminado) {
+            sonidoSalto.currentTime = 0;
+            sonidoSalto.play(); /* ⭐ Sonido de salto */
+            velocidad = -10;
+        }
     }
 
     function crearObstaculo() {
@@ -189,6 +197,10 @@
     }
 
     function perderVida() {
+
+        sonidoChoque.currentTime = 0;
+        sonidoChoque.play(); /* ⭐ Sonido de choque */
+
         vidas--;
         actualizarVidas();
 
