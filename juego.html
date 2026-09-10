@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juego del Perro - Tiesa Solution</title>
+
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background: #87CEEB;
+        font-family: Arial, sans-serif;
+    }
+
+    #game {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        background: #87CEEB;
+    }
+
+    #perro {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        background-image: url('perro_camioneta.jpg'); /* Puedes cambiar la imagen */
+        background-size: cover;
+        top: 50%;
+        left: 20%;
+    }
+
+    .obstaculo {
+        position: absolute;
+        width: 80px;
+        background: green;
+        left: 100%;
+        animation: mover 3s linear infinite;
+    }
+
+    @keyframes mover {
+        from { left: 100%; }
+        to { left: -100px; }
+    }
+
+    #puntuacion {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+    }
+
+    #gameOver {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 40px;
+        color: red;
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+
+<div id="game">
+    <div id="perro"></div>
+    <div id="puntuacion">Puntos: 0</div>
+    <div id="gameOver">GAME OVER</div>
+</div>
+
+<script>
+    const perro = document.getElementById("perro");
+    const game = document.getElementById("game");
+    const puntuacion = document.getElementById("puntuacion");
+    const gameOverText = document.getElementById("gameOver");
+
+    let velocidad = 0;
+    let gravedad = 0.5;
+    let puntos = 0;
+    let juegoTerminado = false;
+
+    function saltar() {
+        if (!juegoTerminado) velocidad = -10;
+    }
+
+    document.body.onkeydown = saltar;
+
+    function crearObstaculo() {
+        if (juegoTerminado) return;
+
+        let altura = Math.random() * 300 + 100;
+        let hueco = 150;
+
+        let arriba = document.createElement("div");
+        arriba.classList.add("obstaculo");
+        arriba.style.height = altura + "px";
+        arriba.style.top = "0px";
+
+        let abajo = document.createElement("div");
+        abajo.classList.add("obstaculo");
+        abajo.style.height = (window.innerHeight - altura - hueco) + "px";
+        abajo.style.bottom = "0px";
+
+        game.appendChild(arriba);
+        game.appendChild(abajo);
+
+        puntos++;
+        puntuacion.textContent = "Puntos: " + puntos;
+
+        setTimeout(() => {
+            arriba.remove();
+            abajo.remove();
+        }, 3000);
+    }
+
+    setInterval(crearObstaculo, 2000);
+
+    function actualizar() {
+        if (juegoTerminado) return;
+
+        velocidad += gravedad;
+        perro.style.top = (perro.offsetTop + velocidad) + "px";
+
+        if (perro.offsetTop > window.innerHeight || perro.offsetTop < 0) {
+            terminarJuego();
+        }
+
+        document.querySelectorAll(".obstaculo").forEach(obs => {
+            let perroRect = perro.getBoundingClientRect();
+            let obsRect = obs.getBoundingClientRect();
+
+            if (
+                perroRect.left < obsRect.right &&
+                perroRect.right > obsRect.left &&
+                perroRect.top < obsRect.bottom &&
+                perroRect.bottom > obsRect.top
+            ) {
+                terminarJuego();
+            }
+        });
+
+        requestAnimationFrame(actualizar);
+    }
+
+    function terminarJuego() {
+        juegoTerminado = true;
+        gameOverText.style.display = "block";
+    }
+
+    actualizar();
+</script>
+
+</body>
+</html>
