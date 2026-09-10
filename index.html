@@ -71,10 +71,57 @@
             font-size: 16px;
             color: #333;
         }
+
+        /* ⭐ BOTÓN MODO OSCURO */
+        .modo-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #222;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 9999;
+            transition: 0.3s;
+        }
+
+        .modo-btn:hover {
+            background: #444;
+        }
+
+        /* ⭐ MODO OSCURO */
+        body.oscuro {
+            background: #1a1a1a !important;
+            color: #f1f1f1 !important;
+        }
+
+        body.oscuro header {
+            background: #000 !important;
+        }
+
+        body.oscuro nav {
+            background: #111 !important;
+        }
+
+        body.oscuro nav a {
+            color: #ffcc00 !important;
+        }
+
+        body.oscuro .contenedor,
+        body.oscuro .sobre {
+            background: #2a2a2a !important;
+            color: #f1f1f1 !important;
+            box-shadow: 0 0 10px rgba(255,255,255,0.1) !important;
+        }
     </style>
 </head>
 
 <body>
+
+<button id="modoOscuroBtn" class="modo-btn">Modo oscuro</button>
 
 <header>
     <h1>Tiesa Solution</h1>
@@ -88,22 +135,33 @@
     <a href="quejas.html">Quejas</a>
     <a href="juego.html">Juego 1</a>
     <a href="juego2.html">Juego 2</a>
-
-    
-
 </nav>
 
 <div class="contenedor">
     <h2>Bienvenido a Tiesa Solution</h2>
-    <p>¿Tienes problemas?PÁGAME.</p>
+    <p>¿Tienes problemas? PÁGAME.</p>
 </div>
 
-<!-- ⭐ SOBRE NOSOTROS AÑADIDO AQUÍ -->
+<!-- ⭐ SOBRE NOSOTROS -->
 <div class="sobre">
     <h2>Sobre Tiesa Solution</h2>
-    <p>Somos expertos en ayudarte .Tu solución rápida, profesional y personalizada para cualquier necesidad.
+    <p>Somos expertos en ayudarte. Tu solución rápida, profesional y personalizada para cualquier necesidad.
     Profesionalidad con humor, como debe ser.</p>
 </div>
+
+<script>
+    const btn = document.getElementById("modoOscuroBtn");
+
+    btn.addEventListener("click", () => {
+        document.body.classList.toggle("oscuro");
+
+        if (document.body.classList.contains("oscuro")) {
+            btn.textContent = "Modo claro";
+        } else {
+            btn.textContent = "Modo oscuro";
+        }
+    });
+</script>
 
 </body>
 </html>
