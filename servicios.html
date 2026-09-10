@@ -20,7 +20,7 @@
             position: fixed;
             top: 15px;
             right: 15px;
-            width: 80px;   /* tamaño más grande */
+            width: 80px;
             height: auto;
             z-index: 9999;
         }
@@ -67,12 +67,60 @@
             margin-top: 30px;
             text-align: center;
         }
+
+        /* ⭐ BOTÓN MODO OSCURO */
+        .modo-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #222;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 9999;
+            transition: 0.3s;
+        }
+
+        .modo-btn:hover {
+            background: #444;
+        }
+
+        /* ⭐ MODO OSCURO */
+        body.oscuro {
+            background: #1a1a1a !important;
+            color: #f1f1f1 !important;
+        }
+
+        body.oscuro header {
+            background: #000 !important;
+        }
+
+        body.oscuro nav {
+            background: #111 !important;
+        }
+
+        body.oscuro nav a {
+            color: #ffcc00 !important;
+        }
+
+        body.oscuro .servicio,
+        body.oscuro .precio,
+        body.oscuro .sobre,
+        body.oscuro .info-contacto,
+        body.oscuro .quejas {
+            background: #2a2a2a !important;
+            color: #f1f1f1 !important;
+            box-shadow: 0 0 10px rgba(255,255,255,0.1) !important;
+        }
     </style>
 </head>
 
 <body>
 
-<!-- ⭐ SOLO ESTO VA DEBAJO DE <body> -->
+<button id="modoOscuroBtn" class="modo-btn">Modo oscuro</button>
 <img src="logo_marca.jpg" class="logo">
 
 <header>
@@ -116,6 +164,20 @@
     </div>
 
 </div>
+
+<script>
+    const btn = document.getElementById("modoOscuroBtn");
+
+    btn.addEventListener("click", () => {
+        document.body.classList.toggle("oscuro");
+
+        if (document.body.classList.contains("oscuro")) {
+            btn.textContent = "Modo claro";
+        } else {
+            btn.textContent = "Modo oscuro";
+        }
+    });
+</script>
 
 </body>
 </html>
