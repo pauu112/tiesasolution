@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tiesa Solution - Inicio</title>
 
+    <!-- Tipografía profesional Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
             background-size: cover;
             color: #fff;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         header {
@@ -42,6 +51,26 @@
             max-width: 900px;
             border-radius: 10px;
         }
+
+        /* Sección Sobre Nosotros */
+        .sobre {
+            background: rgba(255,255,255,0.9);
+            color: #000;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.25);
+            text-align: center;
+        }
+
+        .sobre h2 {
+            margin-bottom: 10px;
+        }
+
+        .sobre p {
+            font-size: 16px;
+            color: #333;
+        }
     </style>
 </head>
 
@@ -64,5 +93,14 @@
     <p>Tu solución rápida, profesional y personalizada para cualquier necesidad.</p>
 </div>
 
+<!-- ⭐ SOBRE NOSOTROS AÑADIDO AQUÍ -->
+<div class="sobre">
+    <h2>Sobre Tiesa Solution</h2>
+    <p>Somos expertos en ayudarte con tus recados, tus masajes, tus recogidas…  
+    y en poner animales haciendo cosas que no deberían hacer.  
+    Profesionalidad con humor, como debe ser.</p>
+</div>
+
 </body>
 </html>
+
