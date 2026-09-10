@@ -15,6 +15,16 @@
             background: linear-gradient(135deg, #f7e8e8, #f5d4d4);
         }
 
+        /* ⭐ LOGO EN LA ESQUINA DERECHA */
+        .logo {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            width: 80px;      /* tamaño del logo */
+            height: auto;
+            z-index: 9999;
+        }
+
         header { background: #222; color: white; padding: 20px; text-align: center; }
         nav { background: #333; padding: 10px; text-align: center; }
         nav a { color: #fff; margin: 0 15px; text-decoration: none; font-size: 18px; font-weight: bold; }
@@ -48,6 +58,9 @@
 
 <body>
 
+<!-- ⭐ LOGO -->
+<img src="logo_marca.jpg" class="logo">
+
 <header>
     <h1>Quejas</h1>
 </header>
@@ -79,4 +92,5 @@
 
 </body>
 </html>
+
 
