@@ -217,7 +217,6 @@
         let obs = document.createElement("div");
         obs.classList.add("obstaculo");
 
-        /* ⭐ Obstáculos visibles usando tus imágenes reales */
         const imagenes = [
             "perro_carrito.png",
             "perro_masaje.jpg",
@@ -225,12 +224,8 @@
             "logo_marca.jpg"
         ];
 
-        /* ⭐ Obstáculos de colores */
-        const colores = [
-            "red", "blue", "yellow", "green"
-        ];
+        const colores = ["red", "blue", "yellow", "green"];
 
-        /* ⭐ 50% imagen - 50% cubo de color */
         if (Math.random() < 0.5) {
             const elegido = imagenes[Math.floor(Math.random() * imagenes.length)];
             obs.style.backgroundImage = `url('${elegido}')`;
@@ -239,14 +234,9 @@
             obs.style.backgroundColor = colores[Math.floor(Math.random() * colores.length)];
         }
 
-        /* ⭐ Altos y bajos */
         let tipo = Math.random() < 0.5 ? "bajo" : "alto";
 
-        if (tipo === "bajo") {
-            obs.style.bottom = "80px";
-        } else {
-            obs.style.bottom = "200px";
-        }
+        obs.style.bottom = tipo === "bajo" ? "80px" : "200px";
 
         game.appendChild(obs);
 
@@ -302,6 +292,7 @@
     }
 
     function perderVida() {
+
         sonidoChoque.currentTime = 0;
         sonidoChoque.play();
 
@@ -310,7 +301,27 @@
 
         if (vidas <= 0) {
             terminarJuego();
+            return;
         }
+
+        /* ⭐ REINICIO SEGURO PARA NO MORIR DE GOLPE */
+        perro.style.bottom = "80px";
+        perro.style.left = "50px";
+
+        /* ⭐ Elimina obstáculos que estén tocando */
+        document.querySelectorAll(".obstaculo").forEach(o => {
+            let r = o.getBoundingClientRect();
+            let p = perro.getBoundingClientRect();
+
+            if (
+                p.left < r.right &&
+                p.right > r.left &&
+                p.top < r.bottom &&
+                p.bottom > r.top
+            ) {
+                o.remove();
+            }
+        });
     }
 
     function terminarJuego() {
@@ -333,6 +344,7 @@
         document.querySelectorAll(".obstaculo, .estrella").forEach(o => o.remove());
 
         perro.style.bottom = "80px";
+        perro.style.left = "50px";
 
         actualizar();
     };
