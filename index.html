@@ -3,73 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiesa Solution - Servicios</title>
+    <title>Tiesa Solution</title>
+
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
             margin: 0;
-            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
         }
+
         header {
-            background: #222;
-            color: white;
+            background: rgba(0,0,0,0.7);
             padding: 20px;
             text-align: center;
         }
-        section {
-            padding: 20px;
+
+        nav {
+            background: rgba(0,0,0,0.8);
+            padding: 10px;
+            text-align: center;
         }
+
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .contenedor {
+            background: rgba(0,0,0,0.6);
+            margin: 30px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 900px;
+            border-radius: 10px;
+        }
+
         .servicio {
-            background: white;
+            background: rgba(255,255,255,0.1);
             padding: 15px;
             margin-bottom: 15px;
             border-radius: 8px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
         }
+
+        .servicio img {
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .boton {
+            display: inline-block;
+            background: #ffcc00;
+            color: #000;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
         iframe {
             width: 100%;
             border: none;
             margin-top: 20px;
+            border-radius: 10px;
         }
     </style>
 </head>
+
 <body>
 
 <header>
     <h1>Tiesa Solution</h1>
-    <p>Servicios personalizados: Recogidas · Recados · Masajes</p>
+    <p>Recogidas · Recados · Masajes</p>
 </header>
 
-<section>
-    <h2>Servicios disponibles</h2>
+<nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#contactar">Contactar</a>
+</nav>
+
+<div class="contenedor" id="inicio">
+    <h2>Bienvenido a Tiesa Solution</h2>
+    <p>Tu solución rápida, profesional y personalizada para cualquier necesidad.</p>
+</div>
+
+<div class="contenedor" id="servicios">
+    <h2>Servicios</h2>
 
     <div class="servicio">
-        <h3>Servicio de recogida</h3>
+        <h3>🚗 Servicio de recogida</h3>
         <p>Te recogemos donde necesites, rápido y seguro.</p>
+        <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1350&q=80">
     </div>
 
     <div class="servicio">
-        <h3>Recados personales</h3>
+        <h3>🛒 Recados personales</h3>
         <p>Hacemos cualquier recado por ti: compras, entregas, trámites.</p>
+        <img src="https://images.unsplash.com/photo-1581579185169-1cdbd5f1f7a5?auto=format&fit=crop&w=1350&q=80">
     </div>
 
     <div class="servicio">
-        <h3>Masajes</h3>
+        <h3>💆 Masajes</h3>
         <p>Masajes relajantes y terapéuticos a domicilio.</p>
+        <img src="https://images.unsplash.com/photo-1556228724-4c1d1a1e1b1b?auto=format&fit=crop&w=1350&q=80">
     </div>
-</section>
 
-<section>
+    <a class="boton" href="#contactar">Contratar servicio</a>
+</div>
+
+<div class="contenedor" id="contactar">
     <h2>Contratar un servicio</h2>
 
-    <!-- SOLO GOOGLE FORMS, SIN FORMULARIO ANTERIOR -->
+    <!-- FORMULARIO GOOGLE FORMS -->
     <iframe 
         src="https://docs.google.com/forms/d/e/1FAIpQLSccCWxZ0vDn3SHrlusy8m4xwK4os0SZOOkqDx5JpO5pm9ocIA/viewform?embedded=true"
         height="1200">
     </iframe>
-
-</section>
+</div>
 
 </body>
 </html>
